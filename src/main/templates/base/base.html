@@ -1,0 +1,32 @@
+{% load static %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Wassim Maaoui" />
+    <meta name="description" content="" />
+
+    <link rel="stylesheet" href=" {% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href=" {% static 'css/style.css' %}" />
+    <title>Automax</title>
+  </head>
+  <body>
+    <header></header>
+    {% block 'main' %}{% endblock %} {% block 'footer' %}
+    <footer class="footer text-muted bg-dark py-5">
+      <div class="container">
+        <p class="float-end mb-1">
+          Built with
+          <a href="https://www.djangoproject.com/" target="_blank">Django</a>
+        </p>
+        <p class="mb-1">Automax - Fast, Easy, Reliable Car Deals</p>
+        <p>
+          Copyright © {% now 'Y' %} <a href="" class="text-white">Automax</a> by
+          <a href="" class="text-white">Wassim Maaoui</a>
+        </p>
+      </div>
+    </footer>
+    {% endblock %}
+  </body>
+</html>
