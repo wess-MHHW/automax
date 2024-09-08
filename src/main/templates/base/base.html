@@ -9,9 +9,20 @@
 
     <link rel="stylesheet" href=" {% static 'css/bootstrap.min.css' %}" />
     <link rel="stylesheet" href=" {% static 'css/style.css' %}" />
-    <title>Automax</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static '/favicon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static '/favicon/favicon-32x32.png' %} ">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static '/favicon/favicon-16x16.png' %} ">
+    <link rel="manifest" href="{% static '/favicon/site.webmanifest' %} ">
+
+    {% block 'title' %}<title>Automax</title>{% endblock %}
+    
   </head>
   <body>
+    {% if messages %} 
+    {% for message in messages%}
+    <div {%if message.tags%}class='alert alert-{{message.tags}}' {%endif%}>{{message}}</div>
+    {% endfor  %}
+    {% endif  %}
     <header></header>
     {% block 'main' %}{% endblock %} {% block 'footer' %}
     <footer class="footer text-muted bg-dark py-5">
