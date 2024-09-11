@@ -3,3 +3,4 @@ Pillow
 django-localflavor
 django-crispy-forms
 crispy-bootstrap5
+django-filter
