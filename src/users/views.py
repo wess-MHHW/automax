@@ -7,7 +7,7 @@ from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
-from main.models import Listing
+from main.models import LikedListing, Listing
 from users.forms import UserForm, ProfileForm, LocationForm
 
 # Create your views here.
@@ -57,14 +57,16 @@ class RegisterView(View):
 class ProfileView(View):
     def get(self,request):
         user_listings = Listing.objects.filter(seller=request.user.profile)
+        user_liked_listings = LikedListing.objects.filter(profile=request.user.profile)
         user_form = UserForm(instance=request.user)
         profile_form = ProfileForm(instance=request.user.profile)
         location_form = LocationForm(instance=request.user.profile.location)
-        return render(request,'views/profile.html',{'user_listings':user_listings,'user_form':user_form,'profile_form':profile_form,'location_form':location_form})
+        return render(request,'views/profile.html',{'user_listings':user_listings,'user_liked_listings':user_liked_listings,'user_form':user_form,'profile_form':profile_form,'location_form':location_form})
     
     def post(self, request):
         user_listings = Listing.objects.filter(seller=request.user.profile)
         user_form = UserForm(request.POST,instance=request.user)
+        user_liked_listings = LikedListing.objects.filter(profile=request.user.profile)
         profile_form = ProfileForm(request.POST, request.FILES,instance=request.user.profile)
         location_form = LocationForm(request.POST,instance=request.user.profile.location)
         if user_form.is_valid() and profile_form.is_valid() and location_form.is_valid():
@@ -74,4 +76,4 @@ class ProfileView(View):
             messages.success(request,'Profile updated successfully.')
         else:
            messages.error(request,'Error updating profile.') 
-        return render(request,'views/profile.html',{'user_listings':user_listings,'user_form':user_form,'profile_form':profile_form,'location_form':location_form})
+        return render(request,'views/profile.html',{'user_listings':user_listings,'user_liked_listings':user_liked_listings,'user_form':user_form,'profile_form':profile_form,'location_form':location_form})
