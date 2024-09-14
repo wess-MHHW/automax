@@ -1,3 +1,14 @@
+# VSCode settings
+.vscode/
+
+# virtual environment 
 venv/
 
-src/db.sqlite3
+# media files
+src/media/
+
+# compiled bytecode
+*.py[cod]
+
+# database
+*.sqlite3
